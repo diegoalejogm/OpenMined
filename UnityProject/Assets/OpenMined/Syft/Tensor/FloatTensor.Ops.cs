@@ -432,10 +432,11 @@ namespace OpenMined.Syft.Tensor
 
 		public FloatTensor Log1p()
 		{
-			var result = new FloatTensor(_ctrl:ctrl, _shape:shape, _shader:this.shader);
-		
+			var result = new FloatTensor(_ctrl: ctrl, _shape: shape, _shader: this.shader);
+
 			if (dataOnGpu) {
-				return Log1pGPU ();
+				// TODO: Create GPU implementation
+				throw new NotImplementedException();
 			} else {
 				var nCpu = SystemInfo.processorCount;
 				Parallel.For (0, nCpu, workerId => {

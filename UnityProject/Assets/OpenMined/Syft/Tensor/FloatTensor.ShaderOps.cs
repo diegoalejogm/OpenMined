@@ -67,8 +67,8 @@ namespace OpenMined.Syft.Tensor
 		private static int FloorKernel;
 		[SerializeField]
 		private static int RoundKernel;
-		[SerializeField]
-		private static int Log1pKernel;
+//		[SerializeField]
+//		private static int Log1pKernel;
 		[SerializeField]
 		private static int MulScalarKernel_;
 		[SerializeField]
@@ -166,7 +166,7 @@ namespace OpenMined.Syft.Tensor
 				FloorKernel_ = shader.FindKernel ("Floor_");
 				FloorKernel = shader.FindKernel ("Floor");
 				RoundKernel = shader.FindKernel ("Round");
-				Log1pKernel = shader.FindKernel ("Log1p");
+//				Log1pKernel = shader.FindKernel ("Log1p");
 				MulScalarKernel_ = shader.FindKernel ("MulScalar_");
 				MulElemKernel_ = shader.FindKernel ("MulElem_");
 				MulScalarKernel = shader.FindKernel ("MulScalar");
@@ -525,19 +525,19 @@ namespace OpenMined.Syft.Tensor
 
 			return result;
 		}
+/*
+                public FloatTensor Log1pGPU()
+                {
+                        if (!dataOnGpu) return this;
 
-		public FloatTensor Log1pGPU()
-		{
-			if (!dataOnGpu) return this;
+                        var result = this.emptyTensorCopy();
+                        shader.SetBuffer(Log1pKernel, "Log1pData", dataBuffer);
+                        shader.SetBuffer(Log1pKernel, "Log1pResult", result.dataBuffer);
+                        shader.Dispatch(Log1pKernel, this.Size, 1, 1);
 
-			var result = this.emptyTensorCopy();
-			shader.SetBuffer(Log1pKernel, "Log1pData", dataBuffer);
-			shader.SetBuffer(Log1pKernel, "Log1pResult", result.dataBuffer);
-			shader.Dispatch(Log1pKernel, this.Size, 1, 1);
-
-			return result;
-		}
-
+                        return result;
+                }
+ */
 		public void MulScalarGPU_ (float value)
 		{
 			Debug.LogFormat ("<color=blue>FloatTensor.MulScalarGPU_ dataOnGpu: {0}</color>", dataOnGpu);
